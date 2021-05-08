@@ -49,11 +49,13 @@ public class CubeOverview : MonoBehaviour
         {
             cubeGrid[i, j] = new MyCube { cube = Instantiate(cubePrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject };
             cubeGrid[i, j].cube.transform.localScale = Vector3.one * hexSize;
+            cubeGrid[i, j].cube.SetActive(false);
         }
         if (j % 2 != 0)
         {
             cubeGrid[i, j] = new MyCube { cube = Instantiate(cubePrefab, new Vector3(i + 0.5f, j, 0), Quaternion.identity) as GameObject };
             cubeGrid[i, j].cube.transform.localScale = Vector3.one * hexSize;
+            cubeGrid[i, j].cube.SetActive(false);
         }
     }
     void MakeStone(int i, int j)
