@@ -5,14 +5,16 @@ using UnityEngine;
 public class CubeBehaviour : MonoBehaviour
 {
     public GameObject plantPrefab;
-    private void Start()
+    private void Awake()
     {
         new MyPlant { plant = Instantiate(plantPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject };
         CubeOverview.Instance.cubeGrid[1, 0].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[1, 1].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[0, 1].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[0, 0].cube.SetActive(true);
-       
+        CubeOverview.Instance.cubeGrid[0, 0].cube.transform.position += new Vector3(0f, 0f, -3f);
+        plantPrefab.transform.Rotate(90, 0, 0);
+
     }
     private void OnMouseDown()
     {
@@ -25,12 +27,14 @@ public class CubeBehaviour : MonoBehaviour
                     if (transform.position.y == (float)j && transform.position.x == (float)i)
                     {
                         new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject };
+                        
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 1, j, 1), Quaternion.identity) as GameObject };
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 0.5f, j + 1, 1), Quaternion.identity) as GameObject };
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 0.5f, j + 1, 1), Quaternion.identity) as GameObject };
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 1, j, 1), Quaternion.identity) as GameObject };
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 0.5f, j - 1, 1), Quaternion.identity) as GameObject };
                         //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 0.5f, j - 1, 1), Quaternion.identity) as GameObject };
+                        CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
                         CubeOverview.Instance.cubeGrid[i, j].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i + 1, j].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i, j + 1].cube.SetActive(true);
