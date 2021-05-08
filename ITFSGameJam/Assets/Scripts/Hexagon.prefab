@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5250605911698262769}
   - component: {fileID: 8413011375772946623}
   m_Layer: 0
-  m_Name: _exagon
+  m_Name: Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6688952320096627818}
-  m_Mesh: {fileID: 2534964839176971238, guid: dd2a2add46603e045b27d76ebf924461, type: 3}
+  m_Mesh: {fileID: 2534964839176971238, guid: 3c24df4f5bbae454883cdc3f21b2b1ab, type: 3}
 --- !u!23 &5175501022156410303
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: dd2a2add46603e045b27d76ebf924461, type: 3}
+  - {fileID: 670224309865224971, guid: 3c24df4f5bbae454883cdc3f21b2b1ab, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6688952320096627818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d3d9df214dc575489df48e6b64abbe5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8482b1002374fb449a7e06ae3416a6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!64 &8413011375772946623
@@ -108,4 +108,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: dd2a2add46603e045b27d76ebf924461, type: 3}
+  m_Mesh: {fileID: 2534964839176971238, guid: 3c24df4f5bbae454883cdc3f21b2b1ab, type: 3}

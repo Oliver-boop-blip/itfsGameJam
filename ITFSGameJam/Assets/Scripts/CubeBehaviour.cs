@@ -10,9 +10,21 @@ public class CubeBehaviour : MonoBehaviour
         {
             for(int j = 0; j < 4; j++)
             {
-                if (transform.position.y == (float)j && transform.position.x ==(float)i)
+                if (j % 2 == 0)
                 {
-                    CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
+                    if (transform.position.y == (float)j && transform.position.x == (float)i)
+                    {
+                        CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
+                        Debug.Log("Test");
+                    }
+                }
+                if (j % 2 != 0)
+                {
+                    if (transform.position.y == (float)j && transform.position.x == (float)i+0.5f)
+                    {
+                        CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
+                        Debug.Log("Test");
+                    }
                 }
             }
             
