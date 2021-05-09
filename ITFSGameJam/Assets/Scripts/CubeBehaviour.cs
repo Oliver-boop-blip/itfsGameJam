@@ -4,67 +4,122 @@ using UnityEngine;
 
 public class CubeBehaviour : MonoBehaviour
 {
-    public GameObject plantPrefab;
+   // public GameObject[] PlantSpawner;
+    public GameObject[] plantPrefab;
+   // GameObject NextFlower;
+    public NewFlowerGenerator FlowerGenerator;
+    public int indexus;
+    public int[] indexusArray = { 0, 1, 2, 3, 4, 5 };
+    bool BlueBlock = false;
+    bool OrangeBlock = false;
+    public GameObject particlesPrefab;
+
     private void Awake()
-    {
-        new MyPlant { plant = Instantiate(plantPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject };
+      {
+
         CubeOverview.Instance.cubeGrid[1, 0].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[1, 1].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[0, 1].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[0, 0].cube.SetActive(true);
         CubeOverview.Instance.cubeGrid[0, 0].cube.transform.position += new Vector3(0f, 0f, -3f);
-        plantPrefab.transform.Rotate(90, 0, 0);
+        FlowerGenerator = GameObject.FindGameObjectWithTag("FlowerGenerator").GetComponent<NewFlowerGenerator>();
 
     }
-    private void OnMouseDown()
+    private void Start()
     {
-        for(int i = 0; i < 8; i++)
+
+        CubeOverview.Instance.cubeGrid[1, 0].cube.SetActive(true);
+        CubeOverview.Instance.cubeGrid[1, 1].cube.SetActive(true);
+        CubeOverview.Instance.cubeGrid[0, 1].cube.SetActive(true);
+        CubeOverview.Instance.cubeGrid[0, 0].cube.SetActive(true);
+        FlowerGenerator = GameObject.FindGameObjectWithTag("FlowerGenerator").GetComponent<NewFlowerGenerator>();
+        FlowerGenerator.Increment();
+        new MyPlant { plant = Instantiate(plantPrefab[2], new Vector3(0, 0, 0), Quaternion.identity) as GameObject };
+    }
+    public void OnMouseDown()
+    {
+        for (int i = 0; i < 13; i++)
         {
-            for(int j = 0; j < 8; j++)
+            for (int j = 0; j < 13; j++)
             {
                 if (j % 2 == 0)
                 {
+
                     if (transform.position.y == (float)j && transform.position.x == (float)i)
                     {
-                        new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject };
-                        
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 1, j, 1), Quaternion.identity) as GameObject };
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 0.5f, j + 1, 1), Quaternion.identity) as GameObject };
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 0.5f, j + 1, 1), Quaternion.identity) as GameObject };
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 1, j, 1), Quaternion.identity) as GameObject };
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i - 0.5f, j - 1, 1), Quaternion.identity) as GameObject };
-                        //new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i + 0.5f, j - 1, 1), Quaternion.identity) as GameObject };
+                        FlowerGenerator = GameObject.FindGameObjectWithTag("FlowerGenerator").GetComponent<NewFlowerGenerator>();
+                        //indexus = indexusArray[Random.Range(0, indexusArray.Length)];
+                        new MyPlant { plant = Instantiate(plantPrefab[FlowerGenerator.index], new Vector3(i, j, 0), Quaternion.identity) as GameObject };
+                        Score.ScoreValue += 10;
+                        new MyParticles { Particles = Instantiate(particlesPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject };
                         CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
                         CubeOverview.Instance.cubeGrid[i, j].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i + 1, j].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i, j + 1].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i - 1, j + 1].cube.SetActive(true);
                         CubeOverview.Instance.cubeGrid[i - 1, j].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i - 1, j-1].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i, j-1].cube.SetActive(true);
-                        //  Debug.Log("Test");
+                        CubeOverview.Instance.cubeGrid[i - 1, j - 1].cube.SetActive(true);
+                        CubeOverview.Instance.cubeGrid[i, j - 1].cube.SetActive(true);
+                       
+                        FlowerGenerator.Increment();
+                        //if (OrangeBlock == false && FlowerGenerator.index != 1)
+                        //{
+                        //    Debug.Log("Orange is not overlapping with orange");
+                        //}
+
+
+
                     }
                 }
                 if (j % 2 != 0)
                 {
-                    if (transform.position.y == (float)j && transform.position.x == (float)i+0.5f)
-                    {
-                        
-                        CubeOverview.Instance.cubeGrid[i + 1, j].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i, j + 1].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i - 1, j + 1].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i - 1, j].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i - 1, j - 1].cube.SetActive(true);
-                        CubeOverview.Instance.cubeGrid[i, j - 1].cube.SetActive(true);
-                        new MyPlant { plant = Instantiate(plantPrefab, new Vector3(i+0.5f, j, 0), Quaternion.identity) as GameObject };
-                        CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
-                     //   Debug.Log("Test");
-                    }
+                        if (transform.position.y == (float)j && transform.position.x == (float)i + 0.5f)
+                        {
+                            CubeOverview.Instance.cubeGrid[i, j].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i + 1, j].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i + 1, j + 1].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i, j + 1].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i - 1, j + 1].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i - 1, j].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i - 1, j - 1].cube.SetActive(true);
+                            CubeOverview.Instance.cubeGrid[i, j - 1].cube.SetActive(true);
+                            // CubeOverview.Instance.cubeGrid[i, j].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i + 1, j].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i, j + 1].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i - 1, j + 1].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i - 1, j].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i - 1, j-1].cube.SetActive(true);
+                            //CubeOverview.Instance.cubeGrid[i, j-1].cube.SetActive(true);
+                            // indexus = indexusArray[Random.Range(0, indexusArray.Length)];
+                            new MyPlant { plant = Instantiate(plantPrefab[FlowerGenerator.index], new Vector3(i + 0.5f, j, 0), Quaternion.identity) as GameObject };
+                            new MyParticles { Particles = Instantiate(particlesPrefab, new Vector3(i + 0.5f, j, 0), Quaternion.identity) as GameObject };
+                            Score.ScoreValue += 10;
+                            CubeOverview.Instance.cubeGrid[i, j].cube.transform.position += new Vector3(0f, 0f, -3f);
+                            FlowerGenerator.Increment();
+
+                        }
+                    
                 }
+
             }
-            
         }
     }
+
+
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.tag == "Blue")
+    //    {
+    //        //Other ones= false;
+    //        BlueBlock = true;
+    //    }
+    //    if(other.tag == "Orange")
+    //    {
+    //        //Other ones= false;
+    //        OrangeBlock = true;
+    //    }
+    //}
+
     public class MyPlant
     {
         public GameObject plant;
@@ -74,6 +129,15 @@ public class CubeBehaviour : MonoBehaviour
         public GameObject placeableTile;
     }
 
+    public class MyParticles
+    {
+        public GameObject Particles;
+    }
+    public void NewFlower()
+    {
+       
+        
+    }
     // Update is called once per frame
     void Update()
     {

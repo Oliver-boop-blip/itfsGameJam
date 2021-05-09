@@ -12,7 +12,7 @@ public class CubeOverview : MonoBehaviour
     public float hexSize = 70;
     [SerializeField]
     GameObject StonePrefab;
-
+    public int index = 10;
     static CubeOverview instance;
     public static CubeOverview Instance
     {
@@ -27,8 +27,8 @@ public class CubeOverview : MonoBehaviour
     }
     void Start()
     {
-        rows = 8; 
-        columns = 8;
+        rows = 12; 
+        columns = 12;
         cubeGrid = new MyCube[rows, columns];
         FillCubeGrid();
     }
@@ -41,7 +41,7 @@ public class CubeOverview : MonoBehaviour
                 MakeCube(i, j);
             }
         }
-        MakeStone(1, 2);
+       // MakeStone(1, 2);
     }
     void MakeCube(int i, int j)
     {
@@ -86,14 +86,16 @@ public class CubeOverview : MonoBehaviour
             }
 
         }
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+      
+    }
+    // Update is called once per frame
+    public void Update()
+    {
+        
     }
     public class MyCube
     {
+        public int index;
         public GameObject cube;
     }
     public class MyStone

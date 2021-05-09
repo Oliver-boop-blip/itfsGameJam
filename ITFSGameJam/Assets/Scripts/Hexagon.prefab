@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6688952320096627818}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 4.5797, y: -1.9587, z: 2.7984}
+  m_LocalPosition: {x: 4.5797, y: 14.9, z: 2.7984}
   m_LocalScale: {x: 4030.5127, y: 4030.5127, z: 1319.0414}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,7 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8482b1002374fb449a7e06ae3416a6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantPrefab: {fileID: 7893118805474523692, guid: 7f319f7641224804ea9cf419acb145a0, type: 3}
+  plantPrefab:
+  - {fileID: 7934830657562251640, guid: c30c2faeedcd21144a1ca50b2a5f4466, type: 3}
+  - {fileID: 8637933927029734507, guid: 6f89fd2997dbbac46aa5a2e9c55cc9dc, type: 3}
+  - {fileID: 8891801511492250638, guid: db7699b4a1d231f4c83bcc7bc68f2eb9, type: 3}
+  - {fileID: 4660204874453340510, guid: 8d8d9ec7508b191439a3339507cbd8d2, type: 3}
+  - {fileID: 1179724464662538831, guid: e3cb1ce9fcecb3e44a3db0b8b0fee466, type: 3}
+  - {fileID: 5219341725336030706, guid: 78043868a4c1be84b8c698c026da02aa, type: 3}
+  FlowerGenerator: {fileID: 0}
+  indexus: 0
+  indexusArray: 000000000100000002000000030000000400000005000000
+  particlesPrefab: {fileID: 87053221968681376, guid: a1428a5d2999ddc40b0f06b7298c29b2, type: 3}
 --- !u!64 &8413011375772946623
 MeshCollider:
   m_ObjectHideFlags: 0
